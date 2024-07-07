@@ -1,0 +1,126 @@
+.H_Layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.block {
+  padding: 18px;
+}
+
+.filter {
+  display: grid;
+  min-height: 50px;
+  padding: 18px;
+
+  .ant-form-item {
+    margin: 0 !important;
+  }
+
+  .filter_box {
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: #3d97c159 0px 0px 0px 3px;
+
+    .filter_lay {
+      display: flex;
+      gap: 12px;
+
+      .filter_field {
+        display: flex;
+        flex: 3;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .ant-form-item-control {
+          min-width: 200px !important;
+        }
+
+        .ant-form-item-label {
+          min-width: 100px !important;
+        }
+      }
+
+      .query_field {
+        display: flex;
+        flex: 1;
+
+        .query_btn {
+          display: flex;
+          flex: 3;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+      }
+    }
+
+    .filter_down {
+      width: 100%;
+      margin-top: 12px;
+
+      .down {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 78%;
+
+        .ant-form-item-control {
+          min-width: 200px !important;
+        }
+
+        .ant-form-item-label {
+          min-width: 100px !important;
+        }
+      }
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  padding: 18px;
+  overflow-y: hidden;
+
+  .main_table {
+    border-radius: 6px;
+    box-shadow: #3d97c159 0px 0px 0px 3px;
+  }
+}
+
+.footer {
+  z-index: 2;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: end;
+  height: 50px;
+  padding: 0 12px;
+  background-color: #fff;
+  box-shadow: 0px 12px 10px 10px gray;
+
+  &.carry {
+    justify-content: space-between;
+
+    .carry {
+      display: flex;
+      flex: 1;
+      gap: 12px;
+    }
+
+    .page {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: end;
+    }
+  }
+
+  .page {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: end;
+  }
+}

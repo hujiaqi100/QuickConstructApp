@@ -1,0 +1,56 @@
+.h_modal {
+  min-width: 90% !important;
+
+  .ant-input-group-addon {
+    padding: 0 !important;
+  }
+
+  .h_formArea {
+    padding: 6px;
+
+    .h_title {
+      font-weight: bold;
+      margin-bottom: 6px;
+      margin-top: 6px;
+    }
+  }
+
+  .active {
+    &:hover {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+      transition: all 0.1s;
+      scale: 1.05;
+    }
+  }
+
+  .ant-modal-content {
+    .ant-modal-body {
+      max-height: 600px;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      .h_modal_formlist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        width: 99%;
+        padding: 12px 0;
+        border-radius: 12px;
+
+        .ant-form-item {
+          margin: 6px !important;
+        }
+
+        .ant-form-item-control {
+          max-width: fit-content !important;
+        }
+
+        .ant-form-item-label {
+          min-width: 150px !important;
+        }
+      }
+    }
+  }
+}
