@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postcss from "rollup-plugin-postcss";
 export default {
-    input: 'src/index.tsx',
+    input: 'src/index.ts',
     output: [
         {
             format: 'cjs',

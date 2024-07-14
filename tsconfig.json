@@ -6,7 +6,7 @@
       "declarationDir": "dist/types",
       "outDir": "dist",
       "jsx": "react",
-      "strict": true,
+      "strict": false,
       "moduleResolution": "node",
       "esModuleInterop": true,
       "skipLibCheck": true

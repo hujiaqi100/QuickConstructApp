@@ -1,6 +1,6 @@
 {
-  "name": "h_qca",
-  "version": "1.3.3",
+  "name": "baoyue_qca",
+  "version": "1.0.0",
   "main": "dist/esm/index.js",
   "scripts": {
     "build": "rm -rf dist & rollup -c",
@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "hujiaqi",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "@babel/core": "^7.24.7",
