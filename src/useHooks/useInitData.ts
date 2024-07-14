@@ -1,75 +1,50 @@
-import { useState, useEffect, useMemo } from 'react';
-import _ from 'lodash';
-
+import { useState, useEffect, useMemo } from 'react'
+import _ from 'lodash'
+import { DataProcess } from '../dataProcess'
 const initTree = async (data: any) => {
-    if (!data) return;
-    if (data instanceof Object) {
+    if (!data) return
+    if (DataProcess.getType(data) === 'Object') {
         for (const val of Object.keys(data)) {
             if (_.has(data[val], '$initData$')) {
-                const initialization: Function = _.get(data[val], '$initData$');
-                await initialization.bind(data[val])();
+                const initialization: Function = _.get(data[val], '$initData$')
+                await initialization.bind(data[val])()
             }
-            await initTree(data[val]);
+            await initTree(data[val])
         }
     }
-    if (data instanceof Array) {
+    if (DataProcess.getType(data) === 'Array') {
         for (const val of data) {
             if (_.has(val, '$initData$')) {
-                const initialization: Function = _.get(val, '$initData$');
-                await initialization.bind(val)();
+                const initialization: Function = _.get(val, '$initData$')
+                await initialization.bind(val)()
             }
-            await initTree(val);
+            await initTree(val)
         }
     }
-};
-
-interface Params {
-    [key: string]: any;
-    hf: any;
 }
-
-interface ConfigFunction {
-    formName: any;
-    (params: Params): any;
-}
-
-export const useInitData = (
-    config: ConfigFunction,
-    params: Params,
-    init: () => Promise<any>
-): [any, React.Dispatch<React.SetStateAction<any>>, boolean | undefined] => {
-    const _c = useMemo(() => config(params), [config, params]);
-    const [cc, setCc] = useState(_c);
-    const [data, setData] = useState<any>();
-    const [done, setDone] = useState<boolean | undefined>();
-
+export const useInitData = (config: any, params, init: (name: string) => any) => {
+    const [cc, setCc] = useState(config(params));
+    const [done, setDone] = useState<boolean | undefined>(true)
     const hf = useMemo(() => {
         if ('hf' in params) {
-            return params.hf;
+            return params.hf
         } else {
-            throw new Error('config params must include hf, which is an instance of H_Form');
+            throw new Error('config params must includes hf which instance of H_form')
         }
-    }, [params]);
-
+    }, [])
     useEffect(() => {
         (async () => {
-            const _cc = _.cloneDeep(config(params));
-            setDone(true);
-            await initTree(_cc);
-            const data = await init();
+            const _cc = _.cloneDeep(config(params))
+            setDone(false)
+            await initTree(_cc)
+            const data = await init(config.formName)
             if (data) {
-                setData(() => data);
+                hf.operatorFormValue(config.formName, 'setFieldsValue', data)
             }
-            const dd = hf.echoData(data, _cc);
-            setCc(() => dd);
-        })();
-    }, [config, params, init, hf]);
-
-    useEffect(() => {
-        if (data) {
-            hf.setFormFieldsValue(config.formName, data);
-        }
-    }, [data, hf, config.formName]);
-
+            const dd = hf.echoData(data, _cc)
+            setDone(true)
+            setCc(() => dd)
+        })()
+    }, []);
     return [cc, setCc, done];
-};
+}

@@ -39,14 +39,6 @@ export default class H_Form {
       }
     }
   }
-  public setFormFieldsValue = (formName: string, data: any) => {
-    if (this.getForm(formName)) {
-      this.getForm(formName).setFieldsValue(data)
-    }
-  }
-  public getFormFieldsValue(formName: string) {
-    return this.getForm(formName).getFieldsValue({ strict: true })
-  }
   public onReflect = (formName: string, name: string) => {
     let reflect = this.getReflect(formName, name)
     if (!reflect) return () => { }
@@ -62,10 +54,15 @@ export default class H_Form {
     DataProcess.reset(data, _config)
     return _config
   }
-  private WarpItem = (type) => {
+  private WarpItem = (type, label) => {
+    const Dom = ({ children }) => {
+      return <Form.Item label={label}>
+        {children}
+      </Form.Item>
+    }
     switch (type) {
       case 'formlist':
-        return React.Fragment
+        return Dom
       default:
         return Form.Item
     }
@@ -85,18 +82,20 @@ export default class H_Form {
       { ...formProps, form, name: formName },
       [
         ...config.map((item: any, idx: number) => {
+          const label = _.get(item, 'label', '')
           const name = _.get(item, 'name', '')
           const _item = DataProcess.removeSigns(item)
           const type = _.get(item, '$type$', '')
           const show = _.get(item, '$show$') || !_.has(item, '$show$')
           const componentOptions = _.get(item, '$componentOptions$', {})
+          const props = { children: {}, ..._item, key: idx, }
           if (type === 'formlist') {
             _.set(componentOptions, 'name', name)
           }
           if (show) {
             return React.createElement(
-              this.WarpItem(type),
-              { ..._item, key: idx },
+              this.WarpItem(type, label),
+              props,
               hc.getComponents(type, componentOptions, { hf: this, formName })
             )
           } else {

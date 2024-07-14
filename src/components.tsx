@@ -25,7 +25,7 @@ export class H_Components {
       'checkbox_group': <Checkbox.Group />,
       'button': <Button />,
       'search': <Search />,
-      'formlist': <FormList formList={[]} h_form={undefined} btnName={''} name={''} />,
+      'formlist': <FormList formList={[]} h_form={undefined} btnName={''} name={''} labelCol={undefined} wrapperCol={undefined} />,
       'span': <Span />
     }
   }
