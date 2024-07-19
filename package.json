@@ -1,6 +1,6 @@
 {
-  "name": "baoyue_qca",
-  "version": "1.0.2",
+  "name": "h-form-qca",
+  "version": "1.0.0",
   "main": "dist/esm/index.js",
   "scripts": {
     "build": "rm -rf dist & rollup -c",
