@@ -30,10 +30,10 @@ export default class H_Form {
   private getReflect = (formName: string, name: string) => {
     return _.get(this.forms, `${formName}.reflects.${name}`)
   }
-  public operatorFormValue = (formName: string, type: string, data: any) => {
+  public operatorFormValue = (formName: string, type: string, ...data: any) => {
     if (this.getForm(formName)) {
       if (type in this.getForm(formName)) {
-        return this.getForm(formName)[type](data)
+        return this.getForm(formName)[type](...data)
       } else {
         throw new Error(type + ' ' + 'is not in form')
       }
