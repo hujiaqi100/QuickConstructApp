@@ -2,4 +2,5 @@
 demo ： https://github.com/hujiaqi100/my_frame
 
 如何使用
-npm install h_qca
+npm install h-form-qca
+
