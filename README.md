@@ -1,6 +1,6 @@
-### 一个快速构建antd-form应用的组件
-# demo ： https://github.com/hujiaqi100/my_frame
-# 当前version ：1.0.2
+# 一个快速构建antd-form应用的组件
+## demo ： https://github.com/hujiaqi100/my_frame
+## 当前version ：1.0.2
 ## 如何安装
 ```
 npm install h-form-qca
